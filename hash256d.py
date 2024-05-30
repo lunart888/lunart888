@@ -1,5 +1,4 @@
 from hashlib import sha256
-from bitcoin import privtoaddr
 import sys
 
 print(f'usage: python {sys.argv[0]} password 414')
@@ -26,8 +25,7 @@ def hmany(dgst, dk=2):
 nh = hmany(w,rom)
 
 print(nh)
-print(privtoaddr(nh))
-print(privtoaddr(nh+'01'))
+
 
 
 
