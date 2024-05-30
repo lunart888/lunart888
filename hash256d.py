@@ -4,7 +4,7 @@ import sys
 print(f'usage: python {sys.argv[0]} password 414')
 
 w = bytes(sys.argv[1], 'utf-8')
-#w = b'Scanned'
+#w = b'Password'
 
 rom = int(sys.argv[2])
 
