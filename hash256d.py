@@ -1,35 +1,21 @@
-from hashlib import sha256
-import sys
+from hashlib import sha256 
+import sys 
 
-print(f'usage: python {sys.argv[0]} password 414')
+def hash_iterations(data, iterations=2): 
+    hashed_data = data
 
-w = bytes(sys.argv[1], 'utf-8')
-#w = b'Password'
+    for i in range(iterations): 
+        hashed_data = sha256(hashed_data).digest() 
 
-rom = int(sys.argv[2])
+    return hashed_data.hex()
 
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print(f'usage: python {sys.argv[0]} <password> <iterations>')
+        sys.exit(1)
 
-#def dgs(sat):
-    #return sha256(sat).digest()
+    password = bytes(sys.argv[1], 'utf-8') 
+    iterations = int(sys.argv[2])
 
-# h1 = dgs(w)
-
-def hmany(dgst, dk=2):
-    ndg = dgst
-    for i in range(dk):
-        ndg = sha256(ndg).digest()
-    return ndg.hex()
-
-
-
-nh = hmany(w,rom)
-
-print(nh)
-
-
-
-
-
-
-
-
+    hashed_password = hash_iterations(password, iterations)
+    print(hashed_password)
