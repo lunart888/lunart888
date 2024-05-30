@@ -2,7 +2,8 @@ from hashlib import sha256
 import sys 
 
 def hash_iterations(data, iterations=2): 
-    hashed_data = data
+    hashed_data = bytes(data, 'utf-8') 
+    iters = int(iterations)
 
     for i in range(iterations): 
         hashed_data = sha256(hashed_data).digest() 
@@ -14,8 +15,8 @@ if __name__ == "__main__":
         print(f'usage: python {sys.argv[0]} <password> <iterations>')
         sys.exit(1)
 
-    password = bytes(sys.argv[1], 'utf-8') 
-    iterations = int(sys.argv[2])
+    password = sys.argv[1]
+    iterations = sys.argv[2]
 
     hashed_password = hash_iterations(password, iterations)
     print(hashed_password)
